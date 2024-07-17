@@ -1,26 +1,36 @@
-import React from 'react';
-import logo from './logo.svg';
+import * as React from 'react';
 import './App.css';
+import Navbar from './components/Navbar';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import ChangeUser from './pages/ChangeUser';
+import Author from './pages/Author';
+import Reader from './pages/Reader';
+import { lightTheme, darkTheme } from './theme';
+import { ThemeProvider, CssBaseline, Container } from '@mui/material';
 
 function App() {
+
+  const [themeMode, setThemeMode] = React.useState<'light' | 'dark'>('light');
+
+  const toggleTheme = () => {
+    setThemeMode(themeMode === 'light' ? 'dark' : 'light');
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={themeMode === 'light' ? lightTheme : darkTheme}>
+      <CssBaseline />
+      <Router>
+        <Navbar toggleTheme={toggleTheme}/>
+        <Container maxWidth="xl">
+          <Routes>
+            <Route path="/change-user" element={<ChangeUser />} />
+            <Route path="/author" element={<Author />} />
+            <Route path="/reader" element={<Reader />} />
+          </Routes>
+        </Container>
+      </Router>
+    </ThemeProvider>
   );
-}
+};
 
 export default App;
