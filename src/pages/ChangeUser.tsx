@@ -1,11 +1,12 @@
-import * as React from 'react';
+import MainContentArea from "../components/MainContentArea";
+import PageHeader from "../components/PageHeader";
 
-const ChangeUser: React.FC = () => {
+const ChangeUser = () => {
+
   return (
-    <div>
-      <h1>Change User Page</h1>
-      <p>This is the change user page.</p>
-    </div>
+    <MainContentArea>
+      <PageHeader title="Change User"></PageHeader>
+    </MainContentArea>
   );
 };
 

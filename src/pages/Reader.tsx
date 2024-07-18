@@ -1,11 +1,12 @@
-import * as React from 'react';
+import MainContentArea from "../components/MainContentArea";
+import PageHeader from "../components/PageHeader";
 
-const Reader: React.FC = () => {
+const Reader = () => {
   return (
-    <div>
-      <h1>Reader Page</h1>
+    <MainContentArea>
+      <PageHeader title="All Blogs"></PageHeader>
       <p>This is the reader page.</p>
-    </div>
+    </MainContentArea>
   );
 };
 

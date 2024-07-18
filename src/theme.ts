@@ -6,18 +6,32 @@ declare module '@mui/material/styles' {
     navbar: {
       main: string;
       hover: string;
-      border: string;
+      borderColor: string
       text: string;
+      selectedText: string;
     };
+
+    mainContentArea: {
+      main: string,
+      borderColor: string,
+      text: string
+    }
   }
 
   interface PaletteOptions {
     navbar?: {
       main: string;
       hover: string;
-      border: string;
+      borderColor: string,
       text: string;
+      selectedText: string;
     };
+
+    mainContentArea?: {
+      main: string,
+      borderColor: string,
+      text: string
+    }
   }
 }
 
@@ -25,19 +39,21 @@ declare module '@mui/material/styles' {
 const lightTheme = createTheme({
   palette: {
     mode: 'light',
-    primary: {
-      main: '#1976d2', // example primary color
-    },
     background: {
-      default: '#ffffff', // light background color
-      paper: '#f0f0f0', // light paper color (optional)
+      default: '#ffffff', 
     },
     navbar: {
       main: '#1976D2',
       hover: '#1565C0',
-      border: '#1565C0',
+      borderColor: "#1565C0",
       text: '#FFFFFF',
+      selectedText: "yellow"
     },
+    mainContentArea: {
+      main: "#E1E6FA",
+      borderColor: "#C5CAE9",
+      text: "#333333"
+    }
   },
 });
 
@@ -45,19 +61,21 @@ const lightTheme = createTheme({
 const darkTheme = createTheme({
   palette: {
     mode: 'dark',
-    primary: {
-      main: '#90caf9', // example primary color
-    },
     background: {
-      default: '#303030', // dark background color
-      paper: '#424242', // dark paper color (optional)
+      default: '#121212', 
     },
     navbar: {
       main: '#212121',
       hover: '#424242',
-      border: '#424242',
+      borderColor: "424242",
       text: '#E0E0E0',
+      selectedText: "yellow"
     },
+    mainContentArea: {
+      main: "#1E1E1E",
+      borderColor: "#424242",
+      text: "#333333"
+    }
   },
 });
 

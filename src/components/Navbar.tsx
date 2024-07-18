@@ -1,31 +1,24 @@
 import * as React from "react";
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
-import Menu from "@mui/material/Menu";
-import MenuIcon from "@mui/icons-material/Menu";
-import Container from "@mui/material/Container";
-import Button from "@mui/material/Button";
-import Tooltip from "@mui/material/Tooltip";
-import MenuItem from "@mui/material/MenuItem";
-import Brightness4Icon from '@mui/icons-material/Brightness4';
+import * as MUI from "../MUI/muiImports";
 import { Link, useLocation } from "react-router-dom";
-import { useTheme } from '@mui/material/styles';
+import { useTheme } from "@mui/material/styles";
+import { useAppDispatch, useAppSelector } from "../redux/hooks";
+import { setPage } from "../redux/pageSlice";
 
 interface Props {
   toggleTheme: () => void;
 }
 
 const pages = [
-  { name: "Change User", path: "/change-user" },
+  { name: "Change User", path: "/" },
   { name: "Author", path: "/author" },
   { name: "Reader", path: "/reader" },
 ];
 
 const Navbar: React.FC<Props> = ({ toggleTheme }) => {
   const theme = useTheme();
+  const dispatch = useAppDispatch();
+  const selectedPage = useAppSelector((state) => state.page.selectedPage);
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null
   );
@@ -47,16 +40,25 @@ const Navbar: React.FC<Props> = ({ toggleTheme }) => {
     setAnchorElUser(null);
   };
 
-  const isActive = (path: string) => {
-    return location.pathname === path;
+  const handlePageClick = (page: string) => {
+    dispatch(setPage(page));
+    handleCloseNavMenu();
   };
 
   return (
-    <AppBar position="static" sx={{ bgcolor: theme.palette.navbar.main, borderColor: theme.palette.navbar.border }}>
-      <Container maxWidth="xl">
-        <Toolbar disableGutters>
-          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
-            <IconButton
+    <MUI.AppBar
+      position="static"
+      sx={{
+        bgcolor: theme.palette.navbar.main,
+        borderColor: theme.palette.navbar.borderColor,
+        borderStyle: 'solid',
+        borderWidth: '1px 0',
+      }}
+    >
+      <MUI.Container maxWidth="xl">
+        <MUI.Toolbar disableGutters>
+          <MUI.Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+            <MUI.IconButton
               size="large"
               aria-label="account of current user"
               aria-controls="menu-appbar"
@@ -64,9 +66,9 @@ const Navbar: React.FC<Props> = ({ toggleTheme }) => {
               onClick={handleOpenNavMenu}
               color="inherit"
             >
-              <MenuIcon />
-            </IconButton>
-            <Menu
+              <MUI.MenuIcon />
+            </MUI.IconButton>
+            <MUI.Menu
               id="menu-appbar"
               anchorEl={anchorElNav}
               anchorOrigin={{
@@ -83,41 +85,76 @@ const Navbar: React.FC<Props> = ({ toggleTheme }) => {
               sx={{
                 display: { xs: "block", md: "none" },
               }}
+
+              slotProps={{
+                paper: {
+                  sx: {
+                    bgcolor: theme.palette.navbar.main, // Set background color here
+                  },
+                },
+              }}
+
             >
               {pages.map((page) => (
-                <MenuItem
+                // Mobile screen size drop down menu content Start
+                <MUI.MenuItem
                   key={page.name}
-                  onClick={handleCloseNavMenu}
+                  onClick={() => handlePageClick(page.name)}
                   component={Link}
                   to={page.path}
-                  sx={{ color: isActive(page.path) ? 'primary.main' : 'inherit' }}
                 >
-                  <Typography textAlign="center" sx={{ color: theme.palette.navbar.text }}>{page.name}</Typography>
-                </MenuItem>
+                  <MUI.Typography
+                    textAlign="center"
+                    sx={{
+                      color:
+                        selectedPage === page.name
+                          ? theme.palette.navbar.selectedText
+                          : theme.palette.navbar.text,
+                    }}
+                  >
+                    {page.name}
+                  </MUI.Typography>
+                </MUI.MenuItem>
+                // Mobile screen size drop down menu content End
               ))}
-            </Menu>
-          </Box>
-          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+            </MUI.Menu>
+          </MUI.Box>
+          <MUI.Box
+            sx={{
+              flexGrow: 1,
+              display: { xs: "none", md: "flex" },
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
             {pages.map((page) => (
-              <Button
+              <MUI.Button
                 key={page.name}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: theme.palette.navbar.text, display: 'block', '&:hover': { bgcolor: theme.palette.navbar.hover } }}
+                onClick={() => handlePageClick(page.name)}
+                sx={{
+                  my: 2,
+                  color:
+                    selectedPage === page.name
+                      ? theme.palette.navbar.selectedText
+                      : theme.palette.navbar.text,
+                  display: "block",
+                  "&:hover": { bgcolor: theme.palette.navbar.hover },
+                }}
                 component={Link}
                 to={page.path}
               >
                 {page.name}
-              </Button>
+              </MUI.Button>
             ))}
-          </Box>
+          </MUI.Box>
 
-          <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Toggle theme">
-              <IconButton onClick={toggleTheme} sx={{ p: 0 }}>
-                <Brightness4Icon />
-              </IconButton>
-            </Tooltip>
-            <Menu
+          <MUI.Box sx={{ flexGrow: 0 }}>
+            <MUI.Tooltip title="Toggle theme">
+              <MUI.IconButton onClick={toggleTheme} sx={{ p: 0 }}>
+                <MUI.Brightness4Icon />
+              </MUI.IconButton>
+            </MUI.Tooltip>
+            <MUI.Menu
               sx={{ mt: "45px" }}
               id="menu-appbar"
               anchorEl={anchorElUser}
@@ -133,15 +170,19 @@ const Navbar: React.FC<Props> = ({ toggleTheme }) => {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-                <MenuItem onClick={() => { toggleTheme();}}>
-                  <Typography textAlign="center"></Typography>
-                </MenuItem>
-            </Menu>
-          </Box>
-        </Toolbar>
-      </Container>
-    </AppBar>
+              <MUI.MenuItem
+                onClick={() => {
+                  toggleTheme();
+                }}
+              >
+                <MUI.Typography textAlign="center"></MUI.Typography>
+              </MUI.MenuItem>
+            </MUI.Menu>
+          </MUI.Box>
+        </MUI.Toolbar>
+      </MUI.Container>
+    </MUI.AppBar>
   );
-}
+};
 
 export default Navbar;

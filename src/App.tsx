@@ -23,7 +23,7 @@ function App() {
         <Navbar toggleTheme={toggleTheme}/>
         <Container maxWidth="xl">
           <Routes>
-            <Route path="/change-user" element={<ChangeUser />} />
+            <Route path="/" element={<ChangeUser />} />
             <Route path="/author" element={<Author />} />
             <Route path="/reader" element={<Reader />} />
           </Routes>
