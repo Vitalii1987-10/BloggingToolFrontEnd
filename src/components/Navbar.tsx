@@ -1,9 +1,8 @@
 import * as React from "react";
 import * as MUI from "../MUI/muiImports";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useTheme } from "@mui/material/styles";
-import { useAppDispatch, useAppSelector } from "../redux/hooks";
-import { setPage } from "../redux/pageSlice";
+import { useAppSelector } from "../redux/hooks";
 
 interface Props {
   toggleTheme: () => void;
@@ -17,7 +16,6 @@ const pages = [
 
 const Navbar: React.FC<Props> = ({ toggleTheme }) => {
   const theme = useTheme();
-  const dispatch = useAppDispatch();
   const selectedPage = useAppSelector((state) => state.page.selectedPage);
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null
@@ -26,7 +24,6 @@ const Navbar: React.FC<Props> = ({ toggleTheme }) => {
     null
   );
 
-  const location = useLocation();
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
@@ -41,7 +38,6 @@ const Navbar: React.FC<Props> = ({ toggleTheme }) => {
   };
 
   const handlePageClick = (page: string) => {
-    dispatch(setPage(page));
     handleCloseNavMenu();
   };
 

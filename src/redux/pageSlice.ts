@@ -10,6 +10,7 @@ const pageSlice = createSlice({
   reducers: {
     setPage: (state, action) => {
       state.selectedPage = action.payload;
+      localStorage.setItem('selectedPage', action.payload);
     },
   },
 });
