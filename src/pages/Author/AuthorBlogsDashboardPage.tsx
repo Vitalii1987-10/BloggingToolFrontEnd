@@ -3,19 +3,18 @@ import * as MUI from "../../MUI/muiImports";
 import MainContentArea from "../../components/MainContentArea";
 import PageHeader from "../../components/PageHeader";
 import CreateNewBlogButton from "../../components/buttons/CreateNewBlogButton";
+import BlogsCard from "../../components/cards/Author/BlogsCard";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState, AppDispatch } from "../../redux/store";
 import { setPage } from "../../redux/pageSlice";
 import { getAllBlogs } from "../../redux/blogs/blogsSlice";
 import { useParams } from "react-router-dom";
-import { useTheme } from "@mui/material/styles";
+import { clearBlogs } from "../../redux/blogs/blogsSlice";
 
-import BlogsCard from "../../components/cards/BlogsCard";
 
-const Author = () => {
+const AuthorBlogsDashboardPage = () => {
   const { emailAccountId } = useParams<{ emailAccountId: string }>();
   const { blogs } = useSelector((state: RootState) => state.blogs);
-  const theme = useTheme();
   const dispatch: AppDispatch = useDispatch();
 
   React.useEffect(() => {
@@ -26,6 +25,10 @@ const Author = () => {
     if (emailAccountId) {
       dispatch(getAllBlogs(Number(emailAccountId)));
     }
+    
+    return () => {
+      dispatch(clearBlogs());
+    };
   }, [dispatch, emailAccountId]);
 
    //console log users array. Need to delete when the app is finished.
@@ -49,8 +52,8 @@ const Author = () => {
 
       {blogs.length > 0 ? (
         <BlogsCard
-        blogs={blogs}
         emailAccountId={Number(emailAccountId)}
+        blogs={blogs}
       />
       ) : (
         <p>No blogs found.</p>
@@ -59,4 +62,4 @@ const Author = () => {
   );
 };
 
-export default Author;
+export default AuthorBlogsDashboardPage;

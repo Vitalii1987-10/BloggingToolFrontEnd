@@ -54,14 +54,12 @@ export const addBlog = async (emailAccountId: number, blogDto: BlogDto) => {
   } catch (error) {
     if (axios.isAxiosError(error)) {
       if (error.response) {
-        // Handle specific status codes or error messages
         if (error.response.status === 400) {
           console.warn("Bad request:", error.response.data);
         } else if (error.response.status === 500) {
           console.error("Server error:", error.response.data);
         }
       } else {
-        // Handle network errors or other types of errors
         console.error("Error adding blog:", error.message);
       }
     } else {
@@ -86,7 +84,7 @@ export const deleteBlog = async (emailAccountId: number, blogId: number) => {
     } else {
       console.error("Unexpected error:", error);
     }
-    throw error; // Re-throw the error to let the caller handle it
+    throw error; 
   }
 };
 
@@ -103,7 +101,7 @@ export const updateBlogById = async (emailAccountId: number, blogId: number, blo
     } else {
       console.error("Unexpected error:", error);
     }
-    throw error; // Re-throw the error to let the caller handle it
+    throw error; 
   }
 };
 

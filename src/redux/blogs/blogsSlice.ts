@@ -1,7 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { fetchAllBlogs, fetchBlogById, addBlog, deleteBlog, updateBlogById  } from './blogsApi';
 
-
 export const getAllBlogs = createAsyncThunk('blogs/getAllBlogs', async (emailAccountId: number) => {
   const blogs = await fetchAllBlogs(emailAccountId)
   return blogs;
@@ -20,11 +19,11 @@ export const createBlog = createAsyncThunk('blogs/createBlog', async ({ emailAcc
 export const deleteBlogById = createAsyncThunk('blogs/deleteBlogById',
   async ({ emailAccountId, blogId }: { emailAccountId: number, blogId: number }) => {
     await deleteBlog(emailAccountId, blogId);
-    return { emailAccountId, blogId }; // Return necessary info for state updates
+    return { emailAccountId, blogId }; 
   }
 );
 
-export const updateBlog = createAsyncThunk('blog/updateBlog', async ({emailAccountId, blogId,blogDto}: { emailAccountId: number; blogId: number; blogDto: BlogDto }) => {
+export const updateBlog = createAsyncThunk('blog/updateBlog', async ({emailAccountId, blogId, blogDto}: { emailAccountId: number; blogId: number; blogDto: BlogDto }) => {
     const updatedBlog = await updateBlogById(emailAccountId, blogId, blogDto);
     return updatedBlog;
   }
@@ -58,7 +57,14 @@ const initialState: BlogsState = {
 const blogsSlice = createSlice({
   name: "blogs",
   initialState,
-  reducers: {},
+  reducers: {
+    clearBlogs: (state) => {
+      state.blogs = [];
+    },
+    clearBlog: (state) => {
+      state.blog = null;
+    },
+  },
   extraReducers: (builder) => {
     builder
     .addCase(getAllBlogs.pending, (state) => {
@@ -126,5 +132,7 @@ const blogsSlice = createSlice({
     });
   }
 })
+
+export const { clearBlogs, clearBlog } = blogsSlice.actions;
 
 export default blogsSlice.reducer;

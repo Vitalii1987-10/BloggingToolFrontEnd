@@ -1,12 +1,9 @@
 import * as React from "react";
-import * as MUI from "../../MUI/muiImports";
-import { useNavigate } from "react-router-dom";
+import * as MUI from "../../../MUI/muiImports";
 import { useTheme } from "@mui/material/styles";
-import { useAppDispatch } from "../../redux/hooks";
-import { setPage } from "../../redux/pageSlice";
-import ToArticlesButton from "../buttons/BlogCardButtons/ToArticlesButton";
-import DeleteBlogButton from "../buttons/BlogCardButtons/DeleteBlogButton";
-import EditBlogButton from "../buttons/BlogCardButtons/EditBlogButton";
+import ToArticlesButton from "../../buttons/BlogCardButtons/ToArticlesButton";
+import DeleteBlogButton from "../../buttons/BlogCardButtons/DeleteBlogButton";
+import EditBlogButton from "../../buttons/BlogCardButtons/EditBlogButton";
 
 interface Blog {
   blogId: number;
@@ -20,8 +17,6 @@ interface BlogsCardProps {
 }
 
 const BlogsCard: React.FC<BlogsCardProps> = ({ emailAccountId, blogs }) => {
-  const dispatch = useAppDispatch();
-  const navigate = useNavigate();
   const theme = useTheme();
 
   return (
@@ -59,7 +54,7 @@ const BlogsCard: React.FC<BlogsCardProps> = ({ emailAccountId, blogs }) => {
 
               <MUI.Grid container sx={{justifyContent: "center"}}>
                 <MUI.Grid item xs={6}>
-                  <ToArticlesButton blogId={blog.blogId} />
+                  <ToArticlesButton emailAccountId={emailAccountId} blogId={blog.blogId} />
                 </MUI.Grid>
               </MUI.Grid>
 

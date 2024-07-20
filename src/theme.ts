@@ -27,11 +27,18 @@ interface CustomPalette {
   card: AreaTheme;
 
   createNewBlogButton: ButtonTheme;
+  createNewArticleButton: ButtonTheme;
   toArticlesButton: ButtonTheme;
-  openButton: ButtonTheme;
   editButton: ButtonTheme;
   deleteButton: ButtonTheme;
+  publishButton: ButtonTheme
+  unpublishButton: ButtonTheme;
+  openButton: ButtonTheme;
+  submitCommentButton: ButtonTheme;
+  likeButton: ButtonTheme;
   saveButton: ButtonTheme;
+  backButton: ButtonTheme;
+  shareButton: ButtonTheme;
 }
 
 // Extend the Palette interface
@@ -69,8 +76,15 @@ const lightTheme = createTheme({
       borderColor: "#E0E0E0",
       text: "#333333"
     },
-
+    
     createNewBlogButton : {
+      main: "#4CAF50",
+      hoverColor: "#388E3C",
+      borderColor: "#388E3C",
+      text: "#FFFFFF"
+    },
+
+    createNewArticleButton : {
       main: "#4CAF50",
       hoverColor: "#388E3C",
       borderColor: "#388E3C",
@@ -81,13 +95,6 @@ const lightTheme = createTheme({
       main: "#0288D1",
       hoverColor: "#01579B",
       borderColor: "#0277BD",
-      text: "#FFFFFF"
-    },
-
-    openButton: {
-      main: "#1976D2",
-      hoverColor: "#0D47A1",
-      borderColor: "#1565C0",
       text: "#FFFFFF"
     },
 
@@ -105,12 +112,61 @@ const lightTheme = createTheme({
       text: "#FFFFFF"
     },
 
+    publishButton: {
+      main: "#4CAF50",
+      hoverColor: "#388E3C",
+      borderColor: "#388E3C",
+      text: "#FFFFFF"
+    },
+
+    unpublishButton: {
+      main: "#F44336",
+      hoverColor: "#C62828",
+      borderColor: "#D32F2F",
+      text: "#FFFFFF"
+    },
+
+    openButton: {
+      main: "#1976D2",
+      hoverColor: "#0D47A1",
+      borderColor: "#1565C0",
+      text: "#FFFFFF"
+    },
+
+    submitCommentButton: {
+      main: "#7B1FA2",
+      hoverColor: "#4A148C",
+      borderColor: "#6A1B9A",
+      text: "#FFFFFF"
+    },
+
+    likeButton: {
+      main: "#E91E63",
+      hoverColor: "#AD1457",
+      borderColor: "#C2185B",
+      text: "#FFFFFF"
+    },
+
     saveButton: {
       main: "#2196F3",
       hoverColor: "#1976D2",
       borderColor: "#1976D2",
       text: "#FFFFFF"
-    }
+    },
+
+    backButton: {
+      main: "#757575",
+      hoverColor: "#424242",
+      borderColor: "#616161",
+      text: "#FFFFFF"
+    },
+
+    shareButton: {
+      main: "#4CAF50",
+      hoverColor: "#388E3C",
+      borderColor: "#388E3C",
+      text: "#FFFFFF"
+    },
 
   },
 });
@@ -143,8 +199,15 @@ const darkTheme = createTheme({
       borderColor: "#424242",
       text: "#E0E0E0"
     },
-
+ 
     createNewBlogButton : {
+      main: "#388E3C",
+      hoverColor: "#2E7D32",
+      borderColor: "#2E7D32",
+      text: "#E0E0E0"
+    },
+
+    createNewArticleButton : {
       main: "#388E3C",
       hoverColor: "#2E7D32",
       borderColor: "#2E7D32",
@@ -155,13 +218,6 @@ const darkTheme = createTheme({
       main: "#0277BD",
       hoverColor: "#01579B",
       borderColor: "#01579B",
-      text: "#E0E0E0"
-    },
-
-    openButton: {
-      main: "#3F51B5",
-      hoverColor: "#303F9F",
-      borderColor: "#303F9F",
       text: "#E0E0E0"
     },
 
@@ -179,12 +235,61 @@ const darkTheme = createTheme({
       text: "#E0E0E0"
     },
 
+    publishButton: {
+      main: "#388E3C",
+      hoverColor: "#2E7D32",
+      borderColor: "#2E7D32",
+      text: "#E0E0E0"
+    },
+
+    unpublishButton: {
+      main: "#C62828",
+      hoverColor: "#B71C1C",
+      borderColor: "#B71C1C",
+      text: "#E0E0E0"
+    },
+
+    openButton: {
+      main: "#3F51B5",
+      hoverColor: "#303F9F",
+      borderColor: "#303F9F",
+      text: "#E0E0E0"
+    },
+
+    submitCommentButton: {
+      main: "#6A1B9A",
+      hoverColor: "#4A148C",
+      borderColor: "#4A148C",
+      text: "#E0E0E0"
+    },
+
+    likeButton: {
+      main: "#AD1457",
+      hoverColor: "#880E4F",
+      borderColor: "#880E4F",
+      text: "#E0E0E0"
+    },
+
     saveButton: {
       main: "#1976D2",
       hoverColor: "#1565C0",
       borderColor: "#1565C0",
       text: "#E0E0E0"
-    }
+    },
+
+    backButton: {
+      main: "#616161",
+      hoverColor: "#424242",
+      borderColor: "#424242",
+      text: "#E0E0E0"
+    },
+
+    shareButton: {
+      main: "#388E3C",
+      hoverColor: "#2E7D32",
+      borderColor: "#2E7D32",
+      text: "#E0E0E0"
+    },
   },
 });
 

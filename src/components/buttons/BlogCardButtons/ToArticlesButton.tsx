@@ -2,17 +2,21 @@
 import React from 'react';
 import * as MUI from "../../../MUI/muiImports";
 import { useTheme } from '@mui/material/styles';
+import { useNavigate } from 'react-router-dom';
 
 interface ToArticlesButtonProps {
+  emailAccountId: number,
   blogId: number;
 }
 
-const ToArticlesButton: React.FC<ToArticlesButtonProps> = ({ blogId }) => {
+const ToArticlesButton: React.FC<ToArticlesButtonProps> = ({ emailAccountId, blogId }) => {
   const theme = useTheme();
+  const navigate = useNavigate();
 
   const handleClick = () => {
     // Navigate to articles page or perform action
     console.log(`Navigating to articles for blog ${blogId}`);
+    navigate(`/author/${emailAccountId}/blog/${blogId}/articles`);
   };
 
   return (
