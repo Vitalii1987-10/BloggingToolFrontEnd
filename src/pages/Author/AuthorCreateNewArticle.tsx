@@ -6,19 +6,20 @@ import { useTheme } from "@mui/material/styles";
 import { useNavigate, useParams } from "react-router-dom";
 import { AppDispatch } from "../../redux/store";
 import { useDispatch } from "react-redux";
-import { createBlog } from "../../redux/blogs/blogsSlice";
+import { addArticle } from "../../redux/articles/articlesSlice";
 
-// Define the BlogDto interface
-interface BlogDto {
-  blogTitle: string;
-  blogAuthor: string;
-  blogCategory: string;
+// Define the ArticleCreateDto interface
+interface ArticleCreateDto {
+  articleTitle: string;
+  articleAuthor: string;
+  articleStatus: string;  
+  content: string;
 }
 
-// CreateNewBlogPage component
-const CreateNewBlogPage: React.FC = () => {
-  // Extract emailAccountId from URL parameters
-  const { emailAccountId } = useParams<{ emailAccountId: string }>();
+// CreateNewArticlePage component
+const CreateNewArticlePage: React.FC = () => {
+  // Extract emailAccountId and blogId from URL parameters
+  const { emailAccountId, blogId } = useParams<{ emailAccountId: string; blogId: string }>();
   // Access the current theme
   const theme = useTheme();
   // Initialize the navigate function from React Router
@@ -29,31 +30,33 @@ const CreateNewBlogPage: React.FC = () => {
   // State variables for form fields
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
-  const [category, setCategory] = useState("");
+  const [content, setContent] = useState("");
+  const [status, setStatus] = useState("Draft");
 
   // Handle form submission
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-    const blogDto: BlogDto = {
-      blogTitle: title,
-      blogAuthor: author,
-      blogCategory: category,
+    const articleCreateDto: ArticleCreateDto = {
+      articleTitle: title,
+      articleAuthor: author,
+      articleStatus: status,
+      content: content
     };
 
-    if (emailAccountId) {
+    if (emailAccountId && blogId) {
       try {
         const resultAction = await dispatch(
-          createBlog({ emailAccountId: Number(emailAccountId), blogDto })
+          addArticle({ emailAccountId: Number(emailAccountId), blogId: Number(blogId), articleCreateDto })
         );
 
-        if (createBlog.fulfilled.match(resultAction)) {
-          // Navigate to the blogs page upon successful creation
-          navigate(`/author/${emailAccountId}/blogs`);
+        if (addArticle.fulfilled.match(resultAction)) {
+          // Navigate to the articles page upon successful creation
+          navigate(`/author/${emailAccountId}/blog/${blogId}/articles`); 
         } else {
-          console.error("Failed to create blog:", resultAction.payload);
+          console.error("Failed to create article:", resultAction.payload);
         }
       } catch (error) {
-        console.error("Failed to create blog:", error);
+        console.error("Failed to create article:", error);
       }
     }
   };
@@ -61,7 +64,7 @@ const CreateNewBlogPage: React.FC = () => {
   return (
     <MainContentArea>
       {/* Page header */}
-      <PageHeader title="Create New Blog" />
+      <PageHeader title="Create New Article" />
       <MUI.Paper
         elevation={3}
         sx={{
@@ -73,9 +76,9 @@ const CreateNewBlogPage: React.FC = () => {
         }}
       >
         <MUI.Typography variant="h5" sx={{ mb: 2 }}>
-          Create New Blog
+          Create New Article
         </MUI.Typography>
-        {/* Form for creating a new blog */}
+        {/* Form for creating a new article */}
         <form onSubmit={handleSubmit}>
           {/* Title input field */}
           <MUI.TextField
@@ -95,21 +98,29 @@ const CreateNewBlogPage: React.FC = () => {
             onChange={(e) => setAuthor(e.target.value)}
             sx={{ mb: 2 }}
           />
-          {/* Category dropdown field */}
+          {/* Status dropdown field */}
           <MUI.FormControl fullWidth required sx={{ mb: 2 }}>
-            <MUI.InputLabel>Category</MUI.InputLabel>
+            <MUI.InputLabel>Status</MUI.InputLabel>
             <MUI.Select
-              value={category}
-              onChange={(e) => setCategory(e.target.value)}
-              label="Category"
+              value={status}
+              onChange={(e) => setStatus(e.target.value)}
+              label="Status"
             >
-              <MUI.MenuItem value="Technology">Technology</MUI.MenuItem>
-              <MUI.MenuItem value="Science">Science</MUI.MenuItem>
-              <MUI.MenuItem value="Health">Health</MUI.MenuItem>
-              <MUI.MenuItem value="Lifestyle">Lifestyle</MUI.MenuItem>
+              <MUI.MenuItem value="Draft">Draft</MUI.MenuItem>
+              <MUI.MenuItem value="Published">Published</MUI.MenuItem>
             </MUI.Select>
           </MUI.FormControl>
-
+          {/* Content input field */}
+          <MUI.TextField
+            label="Content"
+            fullWidth
+            required
+            multiline
+            rows={6}
+            value={content}
+            onChange={(e) => setContent(e.target.value)}
+            sx={{ mb: 2 }}
+          />
           {/* Submit button */}
           <MUI.Button 
             type="submit" 
@@ -124,7 +135,7 @@ const CreateNewBlogPage: React.FC = () => {
               },
             }}
           >
-            Create Blog
+            Create Article
           </MUI.Button>
         </form>
       </MUI.Paper>
@@ -132,4 +143,4 @@ const CreateNewBlogPage: React.FC = () => {
   );
 };
 
-export default CreateNewBlogPage;
+export default CreateNewArticlePage;

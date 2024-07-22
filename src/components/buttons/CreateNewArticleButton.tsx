@@ -1,23 +1,23 @@
 import React from 'react';
-import * as MUI from "../../../MUI/muiImports";
+import * as MUI from "../../MUI/muiImports";
 import { useTheme } from '@mui/material/styles';
 import { useNavigate } from 'react-router-dom';
 
-// Purpose: This component renders a button that, when clicked, navigates to the articles page for a specific blog.
+// Purpose: This component renders a button that, when clicked, navigates to the page for creating a new article.
 
-interface ToArticlesButtonProps {
-  emailAccountId: number; // ID of the email account associated with the blog
-  blogId: number;         // ID of the blog to navigate to the articles page
+interface CreateNewArticleButtonProps {
+  emailAccountId: number; // ID of the email account under which the new article will be created
+  blogId: number; // ID of the blog under which the new article will be created
 }
 
-const ToArticlesButton: React.FC<ToArticlesButtonProps> = ({ emailAccountId, blogId }) => {
-  const theme = useTheme(); // Hook to access the theme object
+const CreateNewArticleButton: React.FC<CreateNewArticleButtonProps> = ({ emailAccountId, blogId }) => {
+  const theme = useTheme(); // Hook to access the theme object for styling
   const navigate = useNavigate(); // Hook to handle navigation
 
-  // Function to handle button click and navigate to the articles page
+  // Function to handle button click and navigate to the new article creation page
   const handleClick = () => {
-    // Navigate to the articles page for the specified blog
-    navigate(`/author/${emailAccountId}/blog/${blogId}/articles`);
+    const url = `/author/${emailAccountId}/blog/${blogId}/create-new-article`; // Generate the URL for creating a new article
+    navigate(url); // Navigate to the new article creation page
   };
 
   return (
@@ -26,9 +26,9 @@ const ToArticlesButton: React.FC<ToArticlesButtonProps> = ({ emailAccountId, blo
       variant="text"
       onClick={handleClick}
       sx={{
-        backgroundColor: theme.palette.toArticlesButton.main,
-        color: theme.palette.toArticlesButton.text,
-        borderColor: theme.palette.toArticlesButton.borderColor,
+        backgroundColor: theme.palette.createNewArticleButton.main,
+        color: theme.palette.createNewArticleButton.text,
+        borderColor: theme.palette.createNewArticleButton.borderColor,
         borderStyle: 'solid',
         borderWidth: '1px 0',
         borderRadius: '4px',
@@ -50,13 +50,13 @@ const ToArticlesButton: React.FC<ToArticlesButtonProps> = ({ emailAccountId, blo
           xl: '120px' // Size for extra large screens and up
         },
         "&:hover": {
-          backgroundColor: theme.palette.toArticlesButton.hoverColor,
+          backgroundColor: theme.palette.createNewArticleButton.hoverColor
         },
       }}
     >
-      To Articles
+      Create New Article
     </MUI.Button>
   );
 };
 
-export default ToArticlesButton;
+export default CreateNewArticleButton;

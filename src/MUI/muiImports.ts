@@ -1,3 +1,7 @@
+// This module exports various Material-UI components and icons for use throughout the application.
+// Components are imported from '@mui/material' and '@mui/icons-material', then re-exported for convenience.
+// This centralizes the imports of commonly used components and icons, making them easier to manage and import elsewhere in the application.
+
 export { default as AppBar } from "@mui/material/AppBar";
 export { default as Box } from "@mui/material/Box";
 export { default as Toolbar } from "@mui/material/Toolbar";
@@ -20,3 +24,8 @@ export { default as TextField } from '@mui/material/TextField';
 export { default as FormControl } from '@mui/material/FormControl';
 export { default as InputLabel } from '@mui/material/InputLabel';
 export { default as Select } from '@mui/material/Select';
+export { default as FormGroup } from '@mui/material/FormGroup';
+export { default as List } from '@mui/material/List';
+export { default as ListItem } from '@mui/material/ListItem';
+export { default as ListItemText } from '@mui/material/ListItemText';
+export { default as Alert } from '@mui/material/Alert';

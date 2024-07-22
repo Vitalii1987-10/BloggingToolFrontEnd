@@ -3,13 +3,15 @@ import pageReducer from './pageSlice';
 import usersReducer from './users/usersSlice';
 import blogsReducer from "./blogs/blogsSlice"
 import articlesReducer from "./articles/articlesSlice"
+import articleCommentsReducer from "./articleComments/articleCommentsSlice";
 
 export const store = configureStore({
   reducer: {
     page: pageReducer,
     users: usersReducer,
     blogs: blogsReducer,
-    articles: articlesReducer
+    articles: articlesReducer,
+    articleComments: articleCommentsReducer
   },
 });
 
