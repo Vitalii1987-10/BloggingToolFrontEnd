@@ -76,7 +76,7 @@ const CreateNewBlogPage: React.FC = () => {
           Create New Blog
         </MUI.Typography>
         {/* Form for creating a new blog */}
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="create-blog-form">
           {/* Title input field */}
           <MUI.TextField
             label="Title"
@@ -85,6 +85,7 @@ const CreateNewBlogPage: React.FC = () => {
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             sx={{ mb: 2 }}
+            className="blog-title-input" 
           />
           {/* Author input field */}
           <MUI.TextField
@@ -94,14 +95,16 @@ const CreateNewBlogPage: React.FC = () => {
             value={author}
             onChange={(e) => setAuthor(e.target.value)}
             sx={{ mb: 2 }}
+            className="blog-author-input" 
           />
           {/* Category dropdown field */}
-          <MUI.FormControl fullWidth required sx={{ mb: 2 }}>
+          <MUI.FormControl fullWidth required sx={{ mb: 2 }} className="blog-category-form">
             <MUI.InputLabel>Category</MUI.InputLabel>
             <MUI.Select
               value={category}
               onChange={(e) => setCategory(e.target.value)}
               label="Category"
+              className="blog-category-select" 
             >
               <MUI.MenuItem value="Technology">Technology</MUI.MenuItem>
               <MUI.MenuItem value="Science">Science</MUI.MenuItem>
@@ -123,6 +126,7 @@ const CreateNewBlogPage: React.FC = () => {
                 backgroundColor: theme.palette.toArticlesButton.hoverColor,
               },
             }}
+            className="create-blog-submit-button" 
           >
             Create Blog
           </MUI.Button>

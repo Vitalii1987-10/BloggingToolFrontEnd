@@ -24,6 +24,7 @@ const CreateNewBlogButton: React.FC<CreateNewBlogButtonProps> = ({ emailAccountI
     <MUI.Button
       variant="text"
       onClick={handleClick}
+      className="create-new-blog-button" 
       sx={{
         backgroundColor: theme.palette.createNewBlogButton.main,
         color: theme.palette.createNewBlogButton.text,

@@ -35,6 +35,7 @@ const ReaderArticleCard: React.FC<ReaderArticleCardProps> = ({
       {articles.map((article) => (
         <MUI.Grid item xs={12} sm={6} md={4} key={article.articleId}>
           <MUI.Card
+          className="reader-article-card"
             sx={{
               minWidth: {
                 xs: 240, // Small mobile devices
@@ -86,6 +87,7 @@ const ReaderArticleCard: React.FC<ReaderArticleCardProps> = ({
                 onClick={() =>
                   handleEmailAccountClick(emailAccountId, blogId, article.articleId)
                 }
+                className="reader-open-article-button"
                 sx={{
                   backgroundColor: theme.palette.openButton.main,
                   color: theme.palette.openButton.text, 

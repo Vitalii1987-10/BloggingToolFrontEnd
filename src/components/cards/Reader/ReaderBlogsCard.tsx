@@ -93,6 +93,7 @@ const ReaderBlogsCard: React.FC<BlogsCardProps> = ({
 
             <MUI.Box mt={2} mb={2} display="flex" justifyContent="center">
               <MUI.Button
+              className="reader-open-blog-button"
                 variant="text"
                 onClick={() =>
                   handleEmailAccountClick(emailAccountId, blog.blogId)

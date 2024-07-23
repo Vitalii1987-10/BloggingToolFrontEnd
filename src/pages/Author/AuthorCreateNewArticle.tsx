@@ -87,6 +87,7 @@ const CreateNewArticlePage: React.FC = () => {
             required
             value={title}
             onChange={(e) => setTitle(e.target.value)}
+            className="article-title-input"
             sx={{ mb: 2 }}
           />
           {/* Author input field */}
@@ -96,6 +97,7 @@ const CreateNewArticlePage: React.FC = () => {
             required
             value={author}
             onChange={(e) => setAuthor(e.target.value)}
+            className="article-author-input"
             sx={{ mb: 2 }}
           />
           {/* Status dropdown field */}
@@ -105,6 +107,7 @@ const CreateNewArticlePage: React.FC = () => {
               value={status}
               onChange={(e) => setStatus(e.target.value)}
               label="Status"
+              className="article-status-select"
             >
               <MUI.MenuItem value="Draft">Draft</MUI.MenuItem>
               <MUI.MenuItem value="Published">Published</MUI.MenuItem>
@@ -119,6 +122,7 @@ const CreateNewArticlePage: React.FC = () => {
             rows={6}
             value={content}
             onChange={(e) => setContent(e.target.value)}
+            className="article-content-input"
             sx={{ mb: 2 }}
           />
           {/* Submit button */}
@@ -134,6 +138,7 @@ const CreateNewArticlePage: React.FC = () => {
                 backgroundColor: theme.palette.toArticlesButton.hoverColor,
               },
             }}
+            className="create-article-submit-button"
           >
             Create Article
           </MUI.Button>

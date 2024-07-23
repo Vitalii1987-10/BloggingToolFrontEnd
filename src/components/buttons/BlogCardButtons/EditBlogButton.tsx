@@ -24,6 +24,7 @@ const EditBlogButton: React.FC<EditButtonProps> = ({ emailAccountId, blogId }) =
     <MUI.Button
       variant="text"
       onClick={handleClick}
+      className="edit-blog-button"
       sx={{
         backgroundColor: theme.palette.editButton.main,
         color: theme.palette.editButton.text,

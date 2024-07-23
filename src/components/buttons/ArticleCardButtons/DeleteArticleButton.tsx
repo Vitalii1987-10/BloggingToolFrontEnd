@@ -36,6 +36,7 @@ const DeleteArticleButton: React.FC<DeleteArticleProps> = ({ emailAccountId, blo
     <MUI.Button
       variant="text"
       onClick={handleClick}
+      className='delete-article-button'
       sx={{
         backgroundColor: theme.palette.deleteButton.main,
         color: theme.palette.deleteButton.text,
