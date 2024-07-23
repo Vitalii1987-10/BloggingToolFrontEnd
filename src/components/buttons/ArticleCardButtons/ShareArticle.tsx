@@ -30,6 +30,7 @@ const ShareArticleButton: React.FC<ShareArticleButtonProps> = ({ emailAccountId,
     <MUI.Button
       variant="text"
       onClick={handleClick}
+      className='share-article-button'
       sx={{
         backgroundColor: theme.palette.shareButton.main,
         color: theme.palette.shareButton.text,

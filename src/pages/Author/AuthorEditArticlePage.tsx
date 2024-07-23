@@ -123,6 +123,7 @@ const AuthorEditArticlePage: React.FC = () => {
               required
               value={title}
               onChange={(e) => setTitle(e.target.value)}
+              className="article-title-input"
               sx={{ mb: 2 }}
             />
             <MUI.TextField
@@ -131,21 +132,24 @@ const AuthorEditArticlePage: React.FC = () => {
               required
               value={author}
               onChange={(e) => setAuthor(e.target.value)}
+              className="article-author-input"
               sx={{ mb: 2 }}
             />
             <MUI.TextField
               label="Content"
               fullWidth
               required
-              multiline
-              rows={4}
+              // multiline
+              // rows={4}
               value={content}
               onChange={(e) => setContent(e.target.value)}
+              className="article-content-input"
               sx={{ mb: 2 }}
             />
             <MUI.Button 
               type="submit" 
               variant="contained" 
+              className="update-article-button"
               sx={{ 
                 mt: 2,
                 backgroundColor: theme.palette.saveButton.main,

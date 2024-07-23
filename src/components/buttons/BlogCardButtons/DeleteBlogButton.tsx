@@ -29,6 +29,7 @@ const DeleteBlogButton: React.FC<DeleteButtonProps> = ({ emailAccountId, blogId 
     <MUI.Button
       variant="text"
       onClick={handleClick}
+      className="delete-blog-button"
       sx={{
         backgroundColor: theme.palette.deleteButton.main,
         color: theme.palette.deleteButton.text,

@@ -34,6 +34,7 @@ const PublishArticleButton: React.FC<PublishArticleButtonProps> = ({ emailAccoun
     <MUI.Button
       variant="text"
       onClick={handleClick}
+      className='publish-article-button'
       sx={{
         backgroundColor: theme.palette.publishButton.main,
         color: theme.palette.publishButton.text,

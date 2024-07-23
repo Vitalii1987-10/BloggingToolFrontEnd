@@ -100,6 +100,7 @@ const EditBlogPage: React.FC = () => {
       {/* Form container */}
       <MUI.Paper
         elevation={3}
+        className="edit-blog-form" 
         sx={{
           padding: 3,
           backgroundColor: theme.palette.card.main,
@@ -114,13 +115,14 @@ const EditBlogPage: React.FC = () => {
         </MUI.Typography>
 
         {/* Form for editing the blog */}
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="edit-blog-form">
           <MUI.TextField
             label="Title"
             fullWidth
             required
             value={title}
             onChange={(e) => setTitle(e.target.value)}
+            className="edit-blog-title-input"
             sx={{ mb: 2 }}
           />
           <MUI.TextField
@@ -129,6 +131,7 @@ const EditBlogPage: React.FC = () => {
             required
             value={author}
             onChange={(e) => setAuthor(e.target.value)}
+            className="edit-blog-author-input"
             sx={{ mb: 2 }}
           />
           <MUI.FormControl fullWidth required sx={{ mb: 2 }}>
@@ -137,6 +140,7 @@ const EditBlogPage: React.FC = () => {
               value={category}
               onChange={(e) => setCategory(e.target.value)}
               label="Category"
+              className="edit-blog-category-select"
             >
               <MUI.MenuItem value="Technology">Technology</MUI.MenuItem>
               <MUI.MenuItem value="Science">Science</MUI.MenuItem>
@@ -148,6 +152,7 @@ const EditBlogPage: React.FC = () => {
           <MUI.Button
             type="submit"
             variant="contained"
+            className="edit-blog-submit-button"
             sx={{
               mt: 2,
               backgroundColor: theme.palette.saveButton.main,

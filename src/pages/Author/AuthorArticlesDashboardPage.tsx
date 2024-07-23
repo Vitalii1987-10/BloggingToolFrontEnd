@@ -102,6 +102,7 @@ const AuthorArticlesDashboardPage = () => {
       <MUI.Grid
         container
         spacing={2}
+        className="create-article-grid" 
         sx={{ justifyContent: "center", marginTop: 2, marginBottom: 4 }}
       >
         <CreateNewArticleButton

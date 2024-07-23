@@ -50,13 +50,15 @@ const UserCard: React.FC<UserCardListProps> = ({ users, toggleUser }) => {
               key={emailAccount.emailAccountId}
             >
               <MUI.Card
+                className="user-card" // Add class name for testing
+                data-testid={`card-${emailAccount.emailAccountId}`} // Data attribute for unique identification
                 sx={{
                   minWidth: {
                     xs: 240, // Small mobile devices
                     sm: 280, // Extra small screens
                     md: 300, // Small screens
                     lg: 320, // Medium screens
-                    xl: 340 // Large screens and up
+                    xl: 340, // Large screens and up
                   },
                   maxWidth: "100%", // Allow card to take full width on smaller screens
                   bgcolor: theme.palette.card.main,
@@ -84,26 +86,29 @@ const UserCard: React.FC<UserCardListProps> = ({ users, toggleUser }) => {
                   </MUI.Typography>
                   <MUI.Box mt={2} display="flex" justifyContent="center">
                     <MUI.Button
+                      className="open-button" // Add class name for testing
+                      data-testid={`button-${emailAccount.emailAccountId}`} // Data attribute for unique identification
                       variant="text"
-                      onClick={() =>
-                        handleEmailAccountClick(emailAccount.emailAccountId) // Handle button click
+                      onClick={
+                        () =>
+                          handleEmailAccountClick(emailAccount.emailAccountId) // Handle button click
                       }
                       sx={{
                         backgroundColor: theme.palette.openButton.main,
-                        color: theme.palette.openButton.text, 
+                        color: theme.palette.openButton.text,
                         fontSize: {
-                          xs: '10px', // Font size for smaller mobile devices (extra small)
-                          sm: '14px', // Font size for small screens
-                          md: '14px', // Font size for medium screens
-                          lg: '16px', // Font size for large screens
-                          xl: '18px' // Font size for extra large screens
+                          xs: "10px", // Font size for smaller mobile devices (extra small)
+                          sm: "14px", // Font size for small screens
+                          md: "14px", // Font size for medium screens
+                          lg: "16px", // Font size for large screens
+                          xl: "18px", // Font size for extra large screens
                         },
                         minWidth: {
-                          xs: '70px',  // Size for smaller mobile devices (extra small)
-                          sm: '90px',  // Size for small screens
-                          md: '90px',  // Size for medium screens
-                          lg: '100px',  // Size for large screens
-                          xl: '120px' // Size for extra large screens and up
+                          xs: "70px", // Size for smaller mobile devices (extra small)
+                          sm: "90px", // Size for small screens
+                          md: "90px", // Size for medium screens
+                          lg: "100px", // Size for large screens
+                          xl: "120px", // Size for extra large screens and up
                         },
                         borderColor: theme.palette.openButton.borderColor,
                         borderStyle: "solid",

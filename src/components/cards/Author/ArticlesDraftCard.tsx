@@ -35,6 +35,7 @@ const ArticlesDraftCard: React.FC<ArticlesDraftCardProps> = ({
       {articles.map((article) => (
         <MUI.Grid item xs={12} sm={6} md={4} key={article.articleId}>
           <MUI.Card
+            className="draft-card"
             sx={{
               minWidth: {
                 xs: 240, // Small mobile devices

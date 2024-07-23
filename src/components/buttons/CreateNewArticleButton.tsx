@@ -25,6 +25,7 @@ const CreateNewArticleButton: React.FC<CreateNewArticleButtonProps> = ({ emailAc
     <MUI.Button
       variant="text"
       onClick={handleClick}
+      className="create-new-article-button" 
       sx={{
         backgroundColor: theme.palette.createNewArticleButton.main,
         color: theme.palette.createNewArticleButton.text,

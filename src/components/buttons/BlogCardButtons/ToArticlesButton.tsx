@@ -25,6 +25,7 @@ const ToArticlesButton: React.FC<ToArticlesButtonProps> = ({ emailAccountId, blo
     <MUI.Button
       variant="text"
       onClick={handleClick}
+      className="to-articles-button"
       sx={{
         backgroundColor: theme.palette.toArticlesButton.main,
         color: theme.palette.toArticlesButton.text,

@@ -32,6 +32,7 @@ const UnpublishArticleButton: React.FC<UnpublishArticleButtonProps> = ({ emailAc
     <MUI.Button
       variant="text"
       onClick={handleClick}
+      className='unpublish-article-button'
       sx={{
         backgroundColor: theme.palette.unpublishButton.main,
         color: theme.palette.unpublishButton.text,
